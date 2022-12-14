@@ -1,35 +1,44 @@
+import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import FormOne from "./form-1";
 import { Participant } from "../types";
+import uuid from "react-uuid";
+
+const participants: Participant[] = [
+  {
+    id: uuid(),
+    email: "",
+    role: "Organizer",
+    exclusions: "",
+    santa_for: "",
+  },
+];
+function setParticipants(participants: Participant[]) {}
 
 describe("FormOne", () => {
-  test("A", () => {
-    expect(true).toBe(true)
-  })
-  
-  // it("renders", () => {
+  it("should render", () => {
+    render(
+      <FormOne participants={participants} setParticipants={setParticipants} />
+    );
+
+    expect(screen.getByText("Enter emails")).toBeInTheDocument();
+    expect(screen.getByText("Your email")).toBeInTheDocument();
+    expect(screen.getByText("Draw With")).toBeInTheDocument();
+  });
+  it("should render an input for the organizer's email", () => {
+    render(
+      <FormOne participants={participants} setParticipants={setParticipants} />
+    );
+
+    expect(screen.getAllByRole("textbox")).toHaveLength(2);
+  });
+  // it("should render new inputs on add participant click", () => {
   //   render(
-  //     <FormOne
-  //       participants={[]}
-  //       setParticipants={function (participants: Participant[]): void {
-  //         throw new Error("Function not implemented.");
-  //       }}
-  //     />
+  //     <FormOne participants={participants} setParticipants={setParticipants} />
   //   );
 
-  //   expect(screen.getByText(/Enter Names/i)).toBeInTheDocument();
-  // });
-  // it("sets a participant in the text input", () => {
-  //   render(
-  //     <FormOne
-  //       participants={[]}
-  //       setParticipants={function (participants: Participant[]): void {
-  //         throw new Error("Function not implemented.");
-  //       }}
-  //     />
-  //   );
-
-  //   const input = screen.getByLabelText(/Name/i);
-  //   console.log(input)
+  //   expect(screen.getAllByRole("textbox")).toHaveLength(2);
+  //   screen.getByText("Add another").click();
+  //   expect(screen.getAllByRole("textbox")).toHaveLength(3);
   // });
 });

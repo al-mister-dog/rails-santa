@@ -29,8 +29,16 @@ export default function FormOne({
     ]);
   }
 
+  function isValidEmail(email: string) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+  function isUniqueEmail(index: number, id: string, email: string) {
+    const emailsToCheckAgainst = participants.filter((p) => p.id !== id);
+    return emailsToCheckAgainst.map((p) => p.email).includes(email);
+  }
+
   function onSetParticipant(email: string, id: string) {
-    
     const participant = participants.find((p) => p.id === id);
     if (participant) {
       participant.email = email;
@@ -54,6 +62,7 @@ export default function FormOne({
         </Text>
         <TextInput
           placeholder="Member 1"
+          // error={isValidEmail(email) ? "" : "Invalid email"}
           onChange={(e) => onSetOrganizer(e.target.value)}
         />
       </Box>
@@ -77,6 +86,10 @@ export default function FormOne({
             >
               <TextInput
                 style={{ flex: 1 }}
+                error={
+                  (isValidEmail(email) ? "" : "Invalid email") ||
+                  isUniqueEmail(index, id, email)
+                }
                 placeholder={email ? email : `Enter Member ${index + 1}`}
                 disabled={role === "Organizer"}
                 onChange={(e) => onSetParticipant(e.target.value, id)}

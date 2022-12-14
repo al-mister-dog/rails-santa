@@ -43,6 +43,6 @@ class GiftsControllerTest < ActionDispatch::IntegrationTest
       delete gift_url(@gift), as: :json
     end
 
-    assert_response :no_content
+    assert_response :ok
   end
 end

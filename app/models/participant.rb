@@ -1,4 +1,5 @@
 class Participant < ApplicationRecord
+    validates :email, uniqueness: true
     has_many :santas, foreign_key: "giver_id"
     has_many :gifts, foreign_key: "participant_id"
     has_many :receivers, through: :santas, source: :receiver

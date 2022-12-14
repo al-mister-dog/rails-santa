@@ -8,7 +8,7 @@ export default function ParticipantPage({ data }: { data: any }) {
   return (
     <Box>
       <Title color="teal">{data.participant.email}</Title>
-      <Tabs defaultValue="gallery">
+      <Tabs defaultValue="gallery" mt={50}>
         <Tabs.List>
           <Tabs.Tab
             value="gallery"

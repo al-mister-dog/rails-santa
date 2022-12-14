@@ -10,7 +10,9 @@ class DrawsController < ApplicationController
   # GET /draws/1
   def show
     participants = @draw.participants #SELECT "participants".* FROM "participants" INNER JOIN "santas" ON "participants"."id" = "santas"."giver_id" WHERE "santas"."draw_id" = ?  [["draw_id", "7"]]
-    render json: {draw: @draw, participants: participants}, status: :ok
+    santas_by_draw = Santa.where(draw_id: @draw.id)
+    
+    render json: {draw: @draw, participants: participants, santas: santas_by_draw }, status: :ok
   end
 
   # POST /draws

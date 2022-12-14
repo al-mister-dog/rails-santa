@@ -48,15 +48,23 @@ export default function Layout(props: any) {
 
             <Group>
               <ChristmasTree color="teal" size={40} />
-              <Title order={2} color="teal">
-                Secret Santa
-              </Title>
+              <Link href="/draws/create" style={{ textDecoration: "none" }}>
+                <Title order={2} color="teal">
+                  Secret Santa
+                </Title>
+              </Link>
             </Group>
             <Group ml={100}>
-              <Link href="/draws/create" style={{textDecoration: "none", color: "#404d47"}}>
+              <Link
+                href="/draws/create"
+                style={{ textDecoration: "none", color: "#404d47" }}
+              >
                 <Text>Create New Draw</Text>
               </Link>
-              <Link href="/draws" style={{textDecoration: "none", color: "#404d47"}}>
+              <Link
+                href="/draws"
+                style={{ textDecoration: "none", color: "#404d47" }}
+              >
                 <Text>See All Draws</Text>
               </Link>
             </Group>
@@ -68,3 +76,5 @@ export default function Layout(props: any) {
     </AppShell>
   );
 }
+
+

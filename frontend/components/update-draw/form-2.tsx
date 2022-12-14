@@ -17,13 +17,13 @@ export default function FormTwo({
 }) {
   
   const [exclusions, setExclusions] = useState<string[]>([]);
-
+  const {valid, message} = validParticipants(participants);
   return (
     <Box style={{ width: "400px" }} m="auto">
       <Title order={2} color="teal" weight="bold" mt={25}>
         Set Rules
       </Title>
-      {validParticipants(participants) ? (
+      {valid ? (
         <>
           <Box>
             <SetBudgetForm budget={budget} setBudget={setBudget} />
@@ -34,7 +34,7 @@ export default function FormTwo({
         </>
       ) : (
         <Text color="dimmed" weight="bold" mt={25}>
-          Please enter at least 3 names to set rules
+          {message}
         </Text>
       )}
     </Box>

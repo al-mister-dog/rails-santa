@@ -20,13 +20,13 @@ export default function Draw({
     setParticipants(result);
     setDrawn(true);
   }
-
+  const {valid, message} = validParticipants(participants);
   return (
     <Box>
       <Title order={2} color="teal" weight="bold">
         Draw
       </Title>
-      {validParticipants(participants) ? (
+      {valid ? (
         <>
           <Box
             mt={25}
@@ -74,7 +74,7 @@ export default function Draw({
       ) : (
         <>
           <Text color="dimmed" weight="bold" mt={25}>
-            Please enter at least 3 names to draw
+            {message}
           </Text>
         </>
       )}

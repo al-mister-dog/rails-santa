@@ -2,7 +2,7 @@ import { Box, Title } from "@mantine/core";
 import SecretSantaStepper from "../../../components/update-draw/stepper";
 
 export default function Draw({ data }: { data: { id: string } }) {
-  console.log(data);
+  
   return (
     <Box mt={150}>
       <Title color="teal">Update Draw #</Title>

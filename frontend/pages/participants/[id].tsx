@@ -10,8 +10,8 @@ export default function ParticipantPage({ data }: { data: any }) {
   
   return (
     <Box>
-      <Title color="teal">{data.participant.email}</Title>
-      <Tabs defaultValue="wishlist">
+      <Title ml={25}color="teal" order={2}>{data.participant.email}</Title>
+      <Tabs defaultValue="wishlist" mt={25}>
         <Tabs.List>
           <Tabs.Tab
             value="wishlist"

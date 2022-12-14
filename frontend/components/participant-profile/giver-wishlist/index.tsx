@@ -29,7 +29,7 @@ export default function MyWishListIndex({ participant }: { participant: any }) {
         gap={{ base: "sm", sm: "xl" }}
       >
         <Box>
-          <Title mb={25} order={2} color="dimmed">{participant.email}s Wishlist</Title>
+          <Title mb={25} order={2} color="dimmed">{participant.email}&apos;s Wishlist</Title>
           <Card shadow="xs" style={{ width: "500px", minHeight: "110px" }}>
             <WishlistTable list={list} setList={setList} />
           </Card>

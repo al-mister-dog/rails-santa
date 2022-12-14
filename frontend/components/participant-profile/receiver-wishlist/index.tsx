@@ -43,7 +43,7 @@ export default function ReceiverWishListIndex({ receiver }: { receiver: any }) {
         <Box mt={50}>
           <Center>
             <Title order={3} color="dimmed">
-              {receiver.email}s Wishlist
+              {receiver.email}&apos;s Wishlist
             </Title>
           </Center>
 

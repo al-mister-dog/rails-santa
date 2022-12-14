@@ -11,7 +11,7 @@ export default function MyDraws({ participant }: { participant: any }) {
         `http://localhost:3000/draws-by-participant/${participant.id}`
       );
       const data = await response.json();
-      console.log(data);
+      
       setDraws(data);
     }
     fetchDraws();
