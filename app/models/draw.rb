@@ -1,6 +1,4 @@
 class Draw < ApplicationRecord
-end
-class Draw < ApplicationRecord
     has_many :santas
     has_many :participants, through: :santas, :source => :giver
 end

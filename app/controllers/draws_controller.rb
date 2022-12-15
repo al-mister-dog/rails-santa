@@ -23,9 +23,9 @@ class DrawsController < ApplicationController
     santas = body["santas"]
     budget = body["budget"]
     
-    draw = Draw.create(budget: budget)
-    organizer_id = participants[0]["email"]
-    draw.update(organizer_id: organizer_id)
+    draw = Draw.create(budget: budget, organizer_id: participants[0]["email"])
+    # organizer_id = participants[0]["email"]
+    # draw.update(organizer_id: organizer_id)
     
     santas.each do |santa|
       giver = Participant.find_by(email: santa["giver_id"])
@@ -80,9 +80,12 @@ class DrawsController < ApplicationController
 
     santas_to_delete = santas_by_draw.select do |santa|
       !santas.any? do |s| 
-        s["giver_id"] == santa.giver.email 
+        s["giver_id"] == santa.giver.email #change giver_id to giver_email in the future
       end
     end
+
+    # line 81 to 85 works like this:
+    # 
     
     santas_to_delete.each do |santa|
       santa.destroy

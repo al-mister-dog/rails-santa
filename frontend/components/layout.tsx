@@ -48,7 +48,7 @@ export default function Layout(props: any) {
 
             <Group>
               <ChristmasTree color="teal" size={40} />
-              <Link href="/draws/create" style={{ textDecoration: "none" }}>
+              <Link href="/" style={{ textDecoration: "none" }}>
                 <Title order={2} color="teal">
                   Secret Santa
                 </Title>
