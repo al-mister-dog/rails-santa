@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CurrencyPound } from "tabler-icons-react";
 import { validParticipants } from "../../helpers/validateParticipants";
 import { Participant } from "../types";
+import Validate from "../validate";
 
 export default function FormTwo({
   participants,
@@ -16,13 +17,13 @@ export default function FormTwo({
   setBudget: (budget: number) => void;
 }) {
   const [exclusions, setExclusions] = useState<string[]>([]);
-  const {valid, message} = validParticipants(participants);
+  // const {valid, message} = validParticipants(participants);
   return (
     <Box style={{ width: "400px" }} m="auto">
       <Title order={2} color="teal" weight="bold" mt={25}>
         Set Rules
       </Title>
-      {valid ? (
+      {/* {valid ? (
         <>
           <Box>
             <SetBudgetForm budget={budget} setBudget={setBudget} />
@@ -35,7 +36,15 @@ export default function FormTwo({
         <Text color="dimmed" weight="bold" mt={25}>
           {message}
         </Text>
-      )}
+      )} */}
+      <Validate participants={participants}>
+        <Box>
+          <SetBudgetForm budget={budget} setBudget={setBudget} />
+        </Box>
+        <Box>
+          <SetExclusionsForm participants={participants} />
+        </Box>
+      </Validate>
     </Box>
   );
 }

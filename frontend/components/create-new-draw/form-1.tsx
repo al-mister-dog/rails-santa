@@ -33,6 +33,7 @@ export default function FormOne({
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
+  
   function isUniqueEmail(index: number, id: string, email: string) {
     const emailsToCheckAgainst = participants.filter((p) => p.id !== id);
     return emailsToCheckAgainst.map((p) => p.email).includes(email);

@@ -3,7 +3,6 @@ import uuid from "react-uuid";
 import { Trash } from "tabler-icons-react";
 import { Participant } from "../types";
 
-
 export default function FormOne({
   participants,
   setParticipants,
@@ -11,7 +10,6 @@ export default function FormOne({
   participants: Participant[];
   setParticipants: (participants: Participant[]) => void;
 }) {
-
   function onAddParticipant() {
     setParticipants([
       ...participants,
@@ -26,7 +24,6 @@ export default function FormOne({
   }
 
   function onSetParticipant(email: string, id: string) {
-    
     const participant = participants.find((p) => p.id === id);
     if (participant) {
       participant.email = email;
@@ -39,13 +36,23 @@ export default function FormOne({
     setParticipants(newParticipants);
   }
 
+  function isValidEmail(email: string) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
+  function isUniqueEmail(index: number, id: string, email: string) {
+    const emailsToCheckAgainst = participants.filter((p) => p.id !== id);
+    return emailsToCheckAgainst.map((p) => p.email).includes(email);
+  }
+
   return (
     <Box style={{ width: "400px" }} m="auto">
       <Title order={2} color="teal" weight="bold" mt={25}>
         Enter emails
       </Title>
-   
-      <Box >
+
+      <Box>
         <Text mb={-25} color="dimmed" weight="bold">
           Draw With
         </Text>
@@ -65,6 +72,10 @@ export default function FormOne({
             >
               <TextInput
                 style={{ flex: 1 }}
+                error={
+                  (isValidEmail(email) ? "" : "Invalid email") ||
+                  isUniqueEmail(index, id, email)
+                }
                 placeholder={email ? email : `Enter Member ${index + 1}`}
                 disabled={role === "Organizer"}
                 onChange={(e) => onSetParticipant(e.target.value, id)}
